@@ -89,7 +89,7 @@
 
 <script>
 import { ref, toRefs, unref } from '@vue/reactivity'
-import EventModal from './EventModal.vue'
+import EventModal from './EventModal'
 import { eventTable } from './index'
 import { NumberFormat, padZero } from '@/mixins/mixin'
 export default {

@@ -113,7 +113,7 @@ const eventTable = (card, project, event) => {
       && (project === undefined ? true : project === i.project)
       && (card === undefined ? true : card === i.card)
       && (status === undefined ? true : i.status === (!!status))
-    })
+    }).sort((a, b) => new Date(b.tradedAt) - new Date(a.tradedAt))
   })
 
   return {

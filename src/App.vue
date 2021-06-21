@@ -17,7 +17,17 @@
           <Project :project="project" :event="event" @submit="handleProjectSubmit" style="height: 100%" />
         </a-col>
       </a-row>
-      <EventWrap :event="event" :card="card" :project="project" @submit="handleEventSubmit" />
+      <EventWrap
+        :event="event"
+        :card="card"
+        :project="project"
+        @submit="handleEventSubmit"
+      />
+      <Domain
+        :domain="domain"
+        :project="project"
+        @submit="handleDomainSubmit"
+      />
     </div>
   </a-config-provider>
 </template>
@@ -27,15 +37,18 @@ import { io } from './app'
 import { cardModal, CardWrap } from '@/components/Card'
 import { eventModal, EventWrap } from '@/components/Event'
 import { projectModal, Project } from '@/components/Project'
+import { domainModal } from '@/components/Domain'
+import Domain from '@/components/Domain/Domain'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 export default {
   name: 'App',
-  components: { Project, CardWrap, EventWrap },
+  components: { Project, CardWrap, EventWrap, Domain },
   setup() {
     const {
       event,
       card,
       project,
+      domain,
       handleFileChange,
       download
     } = io()
@@ -45,17 +58,21 @@ export default {
     const { handleProjectSubmit } = projectModal({ project })
 
     const { handleEventSubmit } = eventModal({ event })
+
+    const { handleDomainSubmit } = domainModal({ domain })
     
     return {
       locale: zhCN,
       event,
       card,
       project,
+      domain,
       handleFileChange,
       download,
       handleCardSubmit,
       handleEventSubmit,
-      handleProjectSubmit
+      handleProjectSubmit,
+      handleDomainSubmit
     }
   }
 }

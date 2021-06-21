@@ -12,6 +12,7 @@ import {
   Switch,
   DatePicker,
   Input,
+  Radio,
   ConfigProvider
 } from 'ant-design-vue'
 import App from './App.vue'
@@ -32,5 +33,7 @@ app.use(Switch)
 app.use(DatePicker)
 app.use(Input)
 app.use(ConfigProvider)
+app.use(Radio)
+
 app.config.productionTip = false
 app.mount('#app')

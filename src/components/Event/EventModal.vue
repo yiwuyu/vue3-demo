@@ -36,6 +36,16 @@
           :options="projectOptions"
         ></a-select>
       </a-form-item>
+      <a-form-item
+        label="项目类型"
+        v-if="formState.project"
+      >
+        <a-radio-group
+          v-model:value="formState.eventType"
+          :options="eventTypeOptions"
+        >
+        </a-radio-group>
+      </a-form-item>
       <a-form-item label="金额(HKD)">
         <a-input-number style="width: 100%" v-model:value="formState.amount" :min="0"></a-input-number>
       </a-form-item>
@@ -44,6 +54,11 @@
       </a-form-item>
       <a-form-item label="状态">
         <a-switch v-model:checked="formState.status"></a-switch>
+      </a-form-item>
+      <a-form-item label="备注">
+        <a-textarea
+          v-model:value="formState.remark"
+        ></a-textarea>
       </a-form-item>
     </a-form>
   </a-modal>
@@ -76,12 +91,18 @@ export default {
       resetFields,
       onSubmit
     } = eventModal({ emit })
+
+    const eventTypeOptions = [
+      { label: 'EC2', value: 0 },
+      { label: 'DOMAIN', value: 1 }
+    ]
     
     return {
       visible, show,
       formState,
       rules,
       onSubmit,
+      eventTypeOptions,
       resetFields
     }
   }

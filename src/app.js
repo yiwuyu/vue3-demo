@@ -5,6 +5,7 @@ export const io = () => {
   const card = ref([])
   const project = ref([])
   const event = ref([])
+  const domain = ref([])
   const handleFileChange = (e) => {
     const reader = new FileReader()
     reader.onload = () => {
@@ -12,6 +13,7 @@ export const io = () => {
       card.value = data.card || []
       project.value = data.project || []
       event.value = data.event || []
+      domain.value = data.domain || []
     }
     e.target.files[0] && reader.readAsText(e.target.files[0])
   }
@@ -19,7 +21,8 @@ export const io = () => {
     const data = {
       card: unref(card),
       project: unref(project),
-      event: unref(event)
+      event: unref(event),
+      domain: unref(domain)
     }
     const jsonStr = JSON.stringify(data, null, '\t')
     console.log(jsonStr)
@@ -32,6 +35,7 @@ export const io = () => {
     card,
     project,
     event,
+    domain,
     handleFileChange,
     download
   }

@@ -77,6 +77,11 @@ const eventTable = (card, project, event) => {
       }
     },
     {
+      title: '备注',
+      dataIndex: 'remark',
+      key: 'remark'
+    },
+    {
       title: '操作',
       dataIndex: 'operation',
       key: 'operation',
@@ -132,11 +137,13 @@ const eventModal = ({ event, emit }) => {
   const formState = reactive({
     tradedAt: undefined,
     type: 0,
+    eventType: 0,
     card: '',
     project: '',
     amount: 0,
     usd: 0,
-    status: false
+    status: false,
+    remark: ''
   })
 
   const rules = reactive({

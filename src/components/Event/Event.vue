@@ -73,8 +73,9 @@
       <template #card="{ text }">
         {{ getCardNumber(text) }}
       </template>
-      <template #project="{ text }">
+      <template #project="{ text, record }">
         {{ getProjectName(text) }}
+        {{ getProjectType(record) }}
       </template>
       <template #operation="{ record }">
         <a @click="showModal(record)">编辑</a>
@@ -142,6 +143,9 @@ export default {
       const projectItem = unref(project).find(i => id === i.id)
       return projectItem && projectItem.name
     }
+    const getProjectType = event => {
+      return !event.type && (event.eventType && ['-EC2', '-DOMAIN'][event.eventType] || '-EC2') || ''
+    }
     const getEventStatus = bool => {
       return bool ? '已成交' : '未成交'
     }
@@ -160,6 +164,7 @@ export default {
       projectOptions,
       getCardNumber,
       getProjectName,
+      getProjectType,
       getEventStatus,
       getType,
       eventList,
